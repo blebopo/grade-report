@@ -6,7 +6,7 @@ body {
   color: #8a8a8a;
 }
 
-.grade-summary-details-container{
-    display: flex;
-    flex-wrap: wrap;
+.grade-summary-details-container {
+  display: flex;
+  flex-wrap: wrap;
 }
