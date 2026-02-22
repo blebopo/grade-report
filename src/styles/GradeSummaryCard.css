@@ -1,0 +1,21 @@
+.summary-card {
+  background-color: #1F1F1F;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 0 20px 10px;
+  border-radius: 16px;
+  min-width: 356px;
+  min-height: 65px;  
+}
+
+.summary-card__title {
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+
+.summary-card__value{
+  color: white;
+  font-size: 25px;
+  padding-top: 20px;
+}

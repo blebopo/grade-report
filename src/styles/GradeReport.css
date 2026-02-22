@@ -1,3 +1,12 @@
 body {
   background-color: black;
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  color: #8a8a8a;
+}
+
+.grade-summary-details-container{
+    display: flex;
+    flex-wrap: wrap;
 }
