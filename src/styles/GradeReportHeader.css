@@ -1,0 +1,28 @@
+/* Header */
+.grade-report-header {
+  align-self: flex-start;
+}
+
+.academic-period-header {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 11px;
+  color: #8a8a8a;
+}
+
+.document-title {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 32px;
+}
+
+.first-word {
+  color: white;
+}
+
+.second-word {
+  color: #32e0a1;
+}
