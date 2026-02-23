@@ -7,7 +7,11 @@ export default function LegendComponent() {
       {...gradeRanges.map((grade) => {
         return (
           <div className="grade-symbol-container">
-            <div className="grade-color" style={{ backgroundColor : grade.color }}></div><div className="grade-symbol">{grade.symbol}</div> 
+            <div
+              className="grade-color"
+              style={{ backgroundColor: grade.color }}
+            ></div>
+            <div className="grade-symbol">{grade.symbol}</div>
           </div>
         );
       })}

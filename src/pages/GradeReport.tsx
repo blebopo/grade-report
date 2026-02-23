@@ -29,7 +29,7 @@ export default function GradeReportPage() {
           value={`${studentsPassed}/${students.length}`}
         />
       </div>
-      <LegendComponent/>
+      <LegendComponent />
       <div className="student-reports">
         {sortedStudents.map((student, index) => {
           console.log(student.score);
