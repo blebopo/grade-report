@@ -42,7 +42,7 @@ export const gradeRanges: GradeRange[] = [
     symbol: "D",
     description: "Needs Improvement",
     color: "#FF9E0175",
-    percentageColor: "FF9E01",
+    percentageColor: "#FF9E01",
     gradientFrom: "#8C6600",
   },
   {
