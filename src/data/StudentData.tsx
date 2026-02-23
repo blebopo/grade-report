@@ -1,4 +1,9 @@
-export const students = [
+export interface Student{
+  name: string;
+  score: number
+}
+
+export const students : Student[] = [
   { name: "Ayanda Ndlovu", score: 97 },
   { name: "Boitumelo Thulo", score: 85 },
   { name: "Mohit Gupta", score: 73 },

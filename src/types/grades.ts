@@ -47,7 +47,7 @@ export const gradeRanges: GradeRange[] = [
   },
   {
     min: 0,
-    max: 40,
+    max: 49,
     symbol: "F",
     description: "Fail",
     color: "#FF1C0375",
