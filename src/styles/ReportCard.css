@@ -40,28 +40,28 @@
   font-size: 11px;
 }
 
-.grade-percantage{
+.grade-percantage {
   font-size: 20px;
   font-weight: 500;
 }
 
-.report-card__second-row{
-    display: flex;
-    justify-content: center;
-    width: 95%;
-    height: 10px;
-    margin: 20px
+.report-card__second-row {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  height: 10px;
+  margin: 20px;
 }
 
-.total-percentage-bar{
-  background-color: #A2A2A2;
+.total-percentage-bar {
+  background-color: #a2a2a2;
   height: 10px;
   flex-grow: 91;
 }
 
-.student-percentage{
-    flex-grow: 9;
-    background: linear-gradient(to right, #03ffa3, #1f1f1f);
-    background-color: yellowgreen;
-    transition: flex-grow 0.3s ease;
+.student-percentage {
+  flex-grow: 9;
+  background: linear-gradient(to right, #03ffa3, #1f1f1f);
+  background-color: yellowgreen;
+  transition: flex-grow 0.3s ease;
 }

@@ -1,3 +1,1 @@
-export const gradeSymbols = {
-    
-}
+export const gradeSymbols = {};

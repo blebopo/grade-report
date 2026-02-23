@@ -24,7 +24,6 @@ export default function GradeReportPage() {
           gradePercentage={73}
         />
       </div>
-      
     </>
   );
 }
