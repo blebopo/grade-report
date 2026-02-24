@@ -4,6 +4,7 @@ import ReportCardComponent from "../components/ReportCard";
 import "../styles/GradeReport.css";
 import { students } from "../data/StudentData";
 import LegendComponent from "../components/Legend";
+import ReportCardsLayout from "../layouts/ReportCardsLayout";
 
 export default function GradeReportPage() {
   const sortedStudents = [...students].sort((a, b) => b.score - a.score);
@@ -30,19 +31,7 @@ export default function GradeReportPage() {
         />
       </div>
       <LegendComponent />
-      <div className="student-reports">
-        {sortedStudents.map((student, index) => {
-          console.log(student.score);
-          return (
-            <ReportCardComponent
-              key={student.name}
-              id={index + 1}
-              studentName={student.name}
-              gradePercentage={student.score}
-            />
-          );
-        })}
-      </div>
+      <ReportCardsLayout sortedStudents={sortedStudents} />
     </>
   );
 }

@@ -5,6 +5,8 @@ import FilterButtonComponent from "./FilterButton";
 import FilterButtonDropdownComponent from "./FilterButtonDropdown";
 import { Component } from "react";
 
+interface LegendProps {}
+
 export default class LegendComponent extends Component {
   hideFilter = true;
   displayedFilters = [
@@ -15,7 +17,6 @@ export default class LegendComponent extends Component {
       };
     }),
   ];
-
 
   render() {
     // Determine buttons to display
