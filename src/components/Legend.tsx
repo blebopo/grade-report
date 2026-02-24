@@ -17,7 +17,7 @@ export default class LegendComponent extends Component<LegendProps> {
     ...gradeRanges.map((grade) => {
       return {
         grade,
-        isSelected: true,
+        isSelected: false,
       };
     }),
   ];
@@ -25,7 +25,7 @@ export default class LegendComponent extends Component<LegendProps> {
     ...students
       .sort((a, b) => b.score - a.score)
       .map((student) => {
-        return { student, isDisplayed: true };
+        return { student, isDisplayed: false };
       }),
   ];
 
@@ -57,7 +57,51 @@ export default class LegendComponent extends Component<LegendProps> {
 
       // Determine which students will be displayed
       this.displayedFilters.map((button) => {
-        if (button.grade.symbol === "A") {
+        // If the filter is activated and the filter is targeting all A students
+        if (button.isSelected && button.grade.symbol === "A") {
+          // Find all A students
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 80 && student.student.score <= 100,
+            )
+            .map((student) => (student.isDisplayed = true));
+        }
+        if (button.isSelected && button.grade.symbol === "B") {
+          // Find all B students
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 70 && student.student.score <= 79,
+            )
+            .map((student) => (student.isDisplayed = true));
+        }
+        if (button.isSelected && button.grade.symbol === "C") {
+          // Find all C students
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 60 && student.student.score <= 69,
+            )
+            .map((student) => (student.isDisplayed = true));
+        }
+        if (button.isSelected && button.grade.symbol === "D") {
+          // Find all D students
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 50 && student.student.score <= 59,
+            )
+            .map((student) => (student.isDisplayed = true));
+        }
+        if (button.isSelected && button.grade.symbol === "F") {
+          // Find all F students
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 0 && student.student.score <= 49,
+            )
+            .map((student) => (student.isDisplayed = true));
         }
       });
       // Rerender
