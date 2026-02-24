@@ -4,10 +4,14 @@ import AddFilterButtonComponent from "./AddFilterButton";
 import FilterButtonComponent from "./FilterButton";
 import FilterButtonDropdownComponent from "./FilterButtonDropdown";
 import { Component } from "react";
+import ReportCardsLayout from "../layouts/ReportCardsLayout";
+import type { Student } from "../data/StudentData";
 
-interface LegendProps {}
+interface LegendProps {
+  sortedStudents: Student[];
+}
 
-export default class LegendComponent extends Component {
+export default class LegendComponent extends Component<LegendProps> {
   hideFilter = true;
   displayedFilters = [
     ...gradeRanges.map((grade) => {
@@ -20,7 +24,7 @@ export default class LegendComponent extends Component {
 
   render() {
     // Determine buttons to display
-
+    const { sortedStudents } = this.props;
     // If buttons have been selected add them to buttons to display
     const removeFilter = (gradeToRemove: GradeRange) => {
       // Remove filters from *legend
@@ -55,26 +59,31 @@ export default class LegendComponent extends Component {
     };
 
     return (
-      <div className="grade-legend">
-        {this.displayedFilters
-          .filter((grade) => grade.isSelected)
-          .map((grade) => {
-            return (
-              <FilterButtonComponent
-                grade={grade.grade}
-                removeFilter={() => removeFilter(grade.grade)}
-              />
-            );
-          })}
-        <div className="filter-addition-container">
-          <AddFilterButtonComponent toggleOnOff={toggleDropdown} />
-          <FilterButtonDropdownComponent
-            grades={this.displayedFilters.filter((grade) => !grade.isSelected)}
-            addFilter={(grade) => addFilter(grade)}
-            isFilterHidden={this.hideFilter}
-          />
+      <>
+        <div className="grade-legend">
+          {this.displayedFilters
+            .filter((grade) => grade.isSelected)
+            .map((grade) => {
+              return (
+                <FilterButtonComponent
+                  grade={grade.grade}
+                  removeFilter={() => removeFilter(grade.grade)}
+                />
+              );
+            })}
+          <div className="filter-addition-container">
+            <AddFilterButtonComponent toggleOnOff={toggleDropdown} />
+            <FilterButtonDropdownComponent
+              grades={this.displayedFilters.filter(
+                (grade) => !grade.isSelected,
+              )}
+              addFilter={(grade) => addFilter(grade)}
+              isFilterHidden={this.hideFilter}
+            />
+          </div>
         </div>
-      </div>
+        <ReportCardsLayout sortedStudents={sortedStudents} />
+      </>
     );
   }
 }

@@ -9,6 +9,7 @@ interface ReportCardLayoutProps {
 export default class ReportCardsLayout extends Component<ReportCardLayoutProps> {
   render() {
     const { sortedStudents } = this.props;
+
     return (
       <div className="student-reports">
         {sortedStudents.map((student, index) => {

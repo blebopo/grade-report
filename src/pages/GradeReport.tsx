@@ -1,10 +1,8 @@
 import GradeReportHeaderComponent from "../components/GradeReportHeader";
 import GradeSummaryCardComponent from "../components/GradeSummaryCard";
-import ReportCardComponent from "../components/ReportCard";
 import "../styles/GradeReport.css";
 import { students } from "../data/StudentData";
 import LegendComponent from "../components/Legend";
-import ReportCardsLayout from "../layouts/ReportCardsLayout";
 
 export default function GradeReportPage() {
   const sortedStudents = [...students].sort((a, b) => b.score - a.score);
@@ -30,8 +28,7 @@ export default function GradeReportPage() {
           value={`${studentsPassed}/${students.length}`}
         />
       </div>
-      <LegendComponent />
-      <ReportCardsLayout sortedStudents={sortedStudents} />
+      <LegendComponent sortedStudents={sortedStudents} />
     </>
   );
 }
