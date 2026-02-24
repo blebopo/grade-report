@@ -10,7 +10,7 @@ interface FilterButtonDropdownProps {
     isSelected: boolean;
   }[];
   isFilterHidden: boolean;
-  addFilter: (grade : GradeRange) => void;
+  addFilter: (grade: GradeRange) => void;
 }
 
 export default class FilterButtonDropdownComponent extends Component<FilterButtonDropdownProps> {

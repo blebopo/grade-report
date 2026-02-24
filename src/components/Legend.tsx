@@ -23,52 +23,35 @@ export default class LegendComponent extends Component {
     // If buttons have been selected add them to buttons to display
     const removeFilter = (gradeToRemove: GradeRange) => {
       // Remove filters from *legend
-
       this.displayedFilters.map((button) => {
         if (button.grade === gradeToRemove) {
           console.log(button);
-          // Change button
+          // Change button selection
           button.isSelected = false;
-          // Update hidden filters
-          this.hiddenFilters.push(button);
         }
       });
-      // Remove unselected filter from filters that need to be displayed
-      this.displayedFilters = this.displayedFilters.filter(
-        (grade) => grade.isSelected,
-      );
-
-      
 
       // Rerender
       this.forceUpdate();
     };
     const addFilter = (gradeToRemove: GradeRange) => {
-      // On click show dropdown
-      console.log("Before" + this.hideFilter);
-
-      
-      this.hiddenFilters.map((filterButton) => {
-        if(gradeToRemove === filterButton.grade){
-          filterButton.isSelected = true;
-          console.log("Fix")
+      this.displayedFilters.map((button) => {
+        if (button.grade === gradeToRemove) {
+          console.log(button);
+          // Change button selection
+          button.isSelected = true;
         }
       });
-
-      // Update displayed filters
-      this.hiddenFilters = this.hiddenFilters.filter(
-        (grade) => !grade.isSelected,
-      );
+      // Rerender
       this.forceUpdate();
-
-      console.log("After" + this.hideFilter);
-      // Click on filter
     };
 
     const toggleDropdown = () => {
       // Dropdown toggle
+      // On click show dropdown
       if (this.hideFilter) this.hideFilter = false;
       else this.hideFilter = true;
+      console.log(this.displayedFilters);
       this.forceUpdate();
     };
 
@@ -87,7 +70,7 @@ export default class LegendComponent extends Component {
         <div className="filter-addition-container">
           <AddFilterButtonComponent toggleOnOff={toggleDropdown} />
           <FilterButtonDropdownComponent
-            grades={this.hiddenFilters}
+            grades={this.displayedFilters.filter((grade) => !grade.isSelected)}
             addFilter={(grade) => addFilter(grade)}
             isFilterHidden={this.hideFilter}
           />
