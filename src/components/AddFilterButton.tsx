@@ -1,15 +1,15 @@
 import "../styles/AddFilterButton.css";
 
 interface AddFilterButtonProps {
-  addFilter: () => void;
+  toggleOnOff: () => void;
 }
 
 export default function AddFilterButtonComponent({
-  addFilter,
+  toggleOnOff,
 }: AddFilterButtonProps) {
   return (
     <div className="add-button-container">
-      <button className="add-button" onClick={addFilter}>
+      <button className="add-button" onClick={toggleOnOff}>
         +
       </button>
     </div>

@@ -2,6 +2,7 @@ import { Component } from "react";
 import "../styles/FilterButtonDropdown.css";
 import type { GradeRange } from "../types/grades";
 import FilterButtonComponent from "./FilterButton";
+import DropdownButtonComponent from "./DropdownButton";
 
 interface FilterButtonDropdownProps {
   grades: {
@@ -9,12 +10,12 @@ interface FilterButtonDropdownProps {
     isSelected: boolean;
   }[];
   isFilterHidden: boolean;
-  removeFilter: () => void;
+  addFilter: () => void;
 }
 
 export default class FilterButtonDropdownComponent extends Component<FilterButtonDropdownProps> {
   render() {
-    const { grades, removeFilter, isFilterHidden } = this.props;
+    const { grades, addFilter, isFilterHidden } = this.props;
     let hideFilter = isFilterHidden;
     return (
       <>
@@ -23,9 +24,9 @@ export default class FilterButtonDropdownComponent extends Component<FilterButto
           style={{ display: hideFilter ? "none" : "" }}
         >
           {grades.map((grade) => (
-            <FilterButtonComponent
+            <DropdownButtonComponent
               grade={grade.grade}
-              removeFilter={removeFilter}
+              addFilter={addFilter}
             />
           ))}
         </div>
