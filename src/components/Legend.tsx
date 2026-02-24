@@ -29,26 +29,34 @@ export default class LegendComponent extends Component {
           console.log(button);
           // Change button
           button.isSelected = false;
+          // Update hidden filters
+          this.hiddenFilters.push(button);
         }
       });
-      // Update hidden filters
-      this.hiddenFilters = this.displayedFilters.filter(
-        (grade) => !grade.isSelected,
+      // Remove unselected filter from filters that need to be displayed
+      this.displayedFilters = this.displayedFilters.filter(
+        (grade) => grade.isSelected,
       );
+
+      
 
       // Rerender
       this.forceUpdate();
     };
-    const addFilter = () => {
+    const addFilter = (gradeToRemove: GradeRange) => {
       // On click show dropdown
       console.log("Before" + this.hideFilter);
 
+      
       this.hiddenFilters.map((filterButton) => {
-        filterButton.isSelected = true;
+        if(gradeToRemove === filterButton.grade){
+          filterButton.isSelected = true;
+          console.log("Fix")
+        }
       });
 
       // Update displayed filters
-      this.hiddenFilters = this.displayedFilters.filter(
+      this.hiddenFilters = this.hiddenFilters.filter(
         (grade) => !grade.isSelected,
       );
       this.forceUpdate();
@@ -80,7 +88,7 @@ export default class LegendComponent extends Component {
           <AddFilterButtonComponent toggleOnOff={toggleDropdown} />
           <FilterButtonDropdownComponent
             grades={this.hiddenFilters}
-            addFilter={() => addFilter()}
+            addFilter={(grade) => addFilter(grade)}
             isFilterHidden={this.hideFilter}
           />
         </div>

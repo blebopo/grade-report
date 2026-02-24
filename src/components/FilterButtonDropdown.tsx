@@ -10,7 +10,7 @@ interface FilterButtonDropdownProps {
     isSelected: boolean;
   }[];
   isFilterHidden: boolean;
-  addFilter: () => void;
+  addFilter: (grade : GradeRange) => void;
 }
 
 export default class FilterButtonDropdownComponent extends Component<FilterButtonDropdownProps> {
@@ -26,7 +26,7 @@ export default class FilterButtonDropdownComponent extends Component<FilterButto
           {grades.map((grade) => (
             <DropdownButtonComponent
               grade={grade.grade}
-              addFilter={addFilter}
+              addFilter={() => addFilter(grade.grade)}
             />
           ))}
         </div>
