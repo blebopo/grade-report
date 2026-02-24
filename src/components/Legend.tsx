@@ -1,4 +1,4 @@
-import { gradeRanges } from "../types/grades";
+import { gradeRanges, type GradeRange } from "../types/grades";
 import "../styles/Legend.css";
 import AddFilterButtonComponent from "./AddFilterButton";
 import FilterButtonComponent from "./FilterButton";
@@ -7,45 +7,66 @@ import { Component } from "react";
 
 export default class LegendComponent extends Component {
   hideFilter = true;
+  displayedFilters = [
+    ...gradeRanges.map((grade) => {
+      return {
+        grade,
+        isSelected: true,
+      };
+    }),
+  ];
+  hiddenFilters = this.displayedFilters.filter((grade) => !grade.isSelected);
+
   render() {
     // Determine buttons to display
-    const displayedFilters = [
-      ...gradeRanges.map((grade) => {
-        return {
-          grade,
-          isSelected: false,
-        };
-      }),
-    ];
-    const hiddenFilters = displayedFilters.filter((grade) => !grade.isSelected);
+
     // If buttons have been selected add them to buttons to display
-    function removeFilter() {}
+    const removeFilter = (gradeToRemove: GradeRange) => {
+      // Remove filters from *legend
+
+      this.displayedFilters.map((button) => {
+        if (button.grade === gradeToRemove) {
+          console.log(button);
+          // Change button
+          button.isSelected = false;
+        }
+      });
+      // Update hidden filters
+      this.hiddenFilters = this.displayedFilters.filter(
+        (grade) => !grade.isSelected,
+      );
+      this.forceUpdate();
+    };
     const addFilter = () => {
       // On click show dropdown
       console.log("Before" + this.hideFilter);
+
       if (this.hideFilter) this.hideFilter = false;
       else this.hideFilter = true;
+
       this.forceUpdate();
+
       console.log("After" + this.hideFilter);
+      // Click on filter
     };
 
     return (
       <div className="grade-legend">
-        {displayedFilters
+        {this.displayedFilters
           .filter((grade) => grade.isSelected)
           .map((grade) => {
             return (
               <FilterButtonComponent
                 grade={grade.grade}
-                removeFilter={removeFilter}
+                removeFilter={() => removeFilter(grade.grade)}
               />
             );
           })}
-        <div key={this.hideFilter + ""} className="filter-addition-container">
+        <div className="filter-addition-container">
           <AddFilterButtonComponent addFilter={addFilter} />
           <FilterButtonDropdownComponent
-            grades={hiddenFilters}
-            removeFilter={removeFilter}
+            grades={this.hiddenFilters}
+            removeFilter={() => removeFilter}
             isFilterHidden={this.hideFilter}
           />
         </div>
