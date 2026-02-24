@@ -1,0 +1,20 @@
+.filter-symbol-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  background-color: #1f1f1f;
+  padding-left: 20px;
+}
+
+.grade-color {
+  height: 16px;
+  width: 16px;
+  border-radius: 16px;
+  align-self: center;
+}
+
+.filter-symbol-container:hover {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--grade-color);
+}
