@@ -6,8 +6,10 @@
 
 .grade-symbol-container {
   display: flex;
-  justify-content: center;
-  align-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-color: #1f1f1f;;
+  padding-left: 20px;
 }
 
 .grade-color {
@@ -15,4 +17,13 @@
   width: 16px;
   border-radius: 16px;
   align-self: center;
+}
+
+.close-button {
+  background-color: #1f1f1f;
+  border-radius: 0;
+}
+
+.close-button:hover {
+    border-color: var(--grade_color);
 }
