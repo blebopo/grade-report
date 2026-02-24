@@ -8,18 +8,17 @@ export default function LegendComponent() {
   // Determine buttons to display
   const displayedFilters = [
     ...gradeRanges.map((grade) => {
-      return { 
-        grade, 
-        isSelected: false 
+      return {
+        grade,
+        isSelected: false,
       };
     }),
   ];
-  const hiddenFilters = [...gradeRanges];
+  const hiddenFilters = displayedFilters.filter((grade) => !grade.isSelected);
   // If buttons have been selected add them to buttons to display
   function removeFilter() {}
   function addFilter() {
     // On click show dropdown
-    displayedFilters.filter(grade => !grade.isSelected)
   }
   return (
     <div className="grade-legend">
@@ -33,8 +32,13 @@ export default function LegendComponent() {
             />
           );
         })}
-      <AddFilterButtonComponent addFilter={addFilter} />
-      <FilterButtonDropdownComponent />
+      <div className="filter-addition-container">
+        <AddFilterButtonComponent addFilter={addFilter} />
+        <FilterButtonDropdownComponent
+          grades={hiddenFilters}
+          removeFilter={removeFilter}
+        />
+      </div>
     </div>
   );
 }

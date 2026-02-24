@@ -29,3 +29,8 @@
 .close-button:hover {
   border-color: var(--grade_color);
 }
+
+.filter-addition-container {
+    display: flex;
+    flex-direction: column;
+}
