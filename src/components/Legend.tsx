@@ -15,7 +15,7 @@ export default class LegendComponent extends Component {
       };
     }),
   ];
-  hiddenFilters = this.displayedFilters.filter((grade) => !grade.isSelected);
+
 
   render() {
     // Determine buttons to display
@@ -25,7 +25,6 @@ export default class LegendComponent extends Component {
       // Remove filters from *legend
       this.displayedFilters.map((button) => {
         if (button.grade === gradeToRemove) {
-          console.log(button);
           // Change button selection
           button.isSelected = false;
         }
@@ -34,10 +33,10 @@ export default class LegendComponent extends Component {
       // Rerender
       this.forceUpdate();
     };
+
     const addFilter = (gradeToRemove: GradeRange) => {
       this.displayedFilters.map((button) => {
         if (button.grade === gradeToRemove) {
-          console.log(button);
           // Change button selection
           button.isSelected = true;
         }
@@ -51,7 +50,6 @@ export default class LegendComponent extends Component {
       // On click show dropdown
       if (this.hideFilter) this.hideFilter = false;
       else this.hideFilter = true;
-      console.log(this.displayedFilters);
       this.forceUpdate();
     };
 

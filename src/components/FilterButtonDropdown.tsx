@@ -1,7 +1,6 @@
 import { Component } from "react";
 import "../styles/FilterButtonDropdown.css";
 import type { GradeRange } from "../types/grades";
-import FilterButtonComponent from "./FilterButton";
 import DropdownButtonComponent from "./DropdownButton";
 
 interface FilterButtonDropdownProps {
