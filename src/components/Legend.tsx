@@ -5,7 +5,7 @@ import FilterButtonComponent from "./FilterButton";
 import FilterButtonDropdownComponent from "./FilterButtonDropdown";
 import { Component } from "react";
 import ReportCardsLayout from "../layouts/ReportCardsLayout";
-import type { Student } from "../data/StudentData";
+import { students, type Student } from "../data/StudentData";
 
 interface LegendProps {
   sortedStudents: Student[];
@@ -21,10 +21,18 @@ export default class LegendComponent extends Component<LegendProps> {
       };
     }),
   ];
+  sortedStudents = [
+    ...students
+      .sort((a, b) => b.score - a.score)
+      .map((student) => {
+        return { student, isDisplayed: true };
+      }),
+  ];
 
   render() {
+    // const sortedStudents = [...students].sort((a, b) => b.score - a.score);
+
     // Determine buttons to display
-    const { sortedStudents } = this.props;
     // If buttons have been selected add them to buttons to display
     const removeFilter = (gradeToRemove: GradeRange) => {
       // Remove filters from *legend
@@ -44,6 +52,12 @@ export default class LegendComponent extends Component<LegendProps> {
         if (button.grade === gradeToRemove) {
           // Change button selection
           button.isSelected = true;
+        }
+      });
+
+      // Determine which students will be displayed
+      this.displayedFilters.map((button) => {
+        if (button.grade.symbol === "A") {
         }
       });
       // Rerender
@@ -82,7 +96,11 @@ export default class LegendComponent extends Component<LegendProps> {
             />
           </div>
         </div>
-        <ReportCardsLayout sortedStudents={sortedStudents} />
+        <ReportCardsLayout
+          sortedStudents={this.sortedStudents
+            .filter((student) => student.isDisplayed)
+            .map((student) => student.student)}
+        />
       </>
     );
   }
