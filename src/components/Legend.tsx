@@ -17,23 +17,26 @@ export default class LegendComponent extends Component<LegendProps> {
     ...gradeRanges.map((grade) => {
       return {
         grade,
-        isSelected: false,
+        isSelected: true,
       };
     }),
   ];
+  // New data structure created to help determine if student 
+  // should be rendered or not. { student : Student, isDisblayed : boolean}
   sortedStudents = [
     ...students
       .sort((a, b) => b.score - a.score)
       .map((student) => {
-        return { student, isDisplayed: false };
+        return { 
+          student, 
+          isDisplayed: true
+        };
       }),
   ];
 
   render() {
-    // const sortedStudents = [...students].sort((a, b) => b.score - a.score);
 
-    // Determine buttons to display
-    // If buttons have been selected add them to buttons to display
+    // The logic to filter out 
     const removeFilter = (gradeToRemove: GradeRange) => {
       // Remove filters from *legend
       this.displayedFilters.map((button) => {
@@ -42,7 +45,55 @@ export default class LegendComponent extends Component<LegendProps> {
           button.isSelected = false;
         }
       });
-
+      // Determine which students will not be displayed
+      this.displayedFilters.map( (button) => {
+        if(!button.isSelected && button.grade.symbol === "A"){
+          // Find all A students and switch off their rendering
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 80 && student.student.score <= 100,
+            )
+            .map((student) => (student.isDisplayed = false));
+        }
+        if(!button.isSelected && button.grade.symbol === "B"){
+          // Find all B students and switch off their rendering
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 70 && student.student.score <= 79,
+            )
+            .map((student) => (student.isDisplayed = false));
+        }
+        if(!button.isSelected && button.grade.symbol === "C"){
+          // Find all C students and switch off their rendering
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 60 && student.student.score <= 69,
+            )
+            .map((student) => (student.isDisplayed = false));
+        }
+        if(!button.isSelected && button.grade.symbol === "D"){
+          // Find all D students and switch off their rendering
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 50 && student.student.score <= 59,
+            )
+            .map((student) => (student.isDisplayed = false));
+        }
+        if(!button.isSelected && button.grade.symbol === "F"){
+          // Find all F students and switch off their rendering
+          this.sortedStudents
+            .filter(
+              (student) =>
+                student.student.score >= 0 && student.student.score <= 49,
+            )
+            .map((student) => (student.isDisplayed = false));
+        }
+      })
+      
       // Rerender
       this.forceUpdate();
     };
@@ -123,7 +174,7 @@ export default class LegendComponent extends Component<LegendProps> {
             .filter((grade) => grade.isSelected)
             .map((grade) => {
               return (
-                <FilterButtonComponent
+                <FilterButtonComponent key={grade.grade.symbol}
                   grade={grade.grade}
                   removeFilter={() => removeFilter(grade.grade)}
                 />
