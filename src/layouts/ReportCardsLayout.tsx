@@ -13,7 +13,6 @@ export default class ReportCardsLayout extends Component<ReportCardLayoutProps> 
     return (
       <div className="student-reports">
         {sortedStudents.map((student, index) => {
-          console.log(student.score);
           return (
             <ReportCardComponent
               key={student.name}

@@ -24,6 +24,7 @@ export default class FilterButtonDropdownComponent extends Component<FilterButto
         >
           {grades.map((grade) => (
             <DropdownButtonComponent
+              key={grade.grade.symbol}
               grade={grade.grade}
               addFilter={() => addFilter(grade.grade)}
             />
