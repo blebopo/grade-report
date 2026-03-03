@@ -1,6 +1,5 @@
 import GradeReportHeaderComponent from "../components/GradeReportHeader";
 import GradeSummaryCardComponent from "../components/GradeSummaryCard";
-import ReportCardComponent from "../components/ReportCard";
 import "../styles/GradeReport.css";
 import { students } from "../data/StudentData";
 import LegendComponent from "../components/Legend";
@@ -29,20 +28,7 @@ export default function GradeReportPage() {
           value={`${studentsPassed}/${students.length}`}
         />
       </div>
-      <LegendComponent />
-      <div className="student-reports">
-        {sortedStudents.map((student, index) => {
-          console.log(student.score);
-          return (
-            <ReportCardComponent
-              key={student.name}
-              id={index + 1}
-              studentName={student.name}
-              gradePercentage={student.score}
-            />
-          );
-        })}
-      </div>
+      <LegendComponent sortedStudents={sortedStudents} />
     </>
   );
 }
