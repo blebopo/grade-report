@@ -13,6 +13,8 @@ interface LegendProps {
 
 export default class LegendComponent extends Component<LegendProps> {
   hideFilter = true;
+
+  // Use of mutable data structure, note this is not the react way.
   displayedFilters = [
     ...gradeRanges.map((grade) => {
       return {
